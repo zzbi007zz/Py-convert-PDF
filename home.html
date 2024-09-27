@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF to Text Converter</title>
+</head>
+<body>
+    <h1>Upload PDF</h1>
+    <input type="file" id="fileInput" accept=".pdf">
+    <button onclick="uploadFile()">Upload</button>
+    <pre id="result"></pre>
+
+    <script>
+        async function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await fetch('http://localhost:5000/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                document.getElementById('result').textContent = result.text;
+            } else {
+                document.getElementById('result').textContent = 'Error: ' + result.error;
+            }
+        }
+    </script>
+</body>
+</html>
