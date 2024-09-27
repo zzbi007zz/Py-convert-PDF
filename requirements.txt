@@ -4,3 +4,4 @@ request
 jsonify
 os
 logging
+gunicorn
