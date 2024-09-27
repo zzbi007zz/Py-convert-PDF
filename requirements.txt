@@ -1,2 +1,6 @@
 Flask
 PyPDF2
+request
+jsonify
+os
+logging
